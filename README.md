@@ -1,59 +1,100 @@
-# CloneOfJira
+# Requerimiento de Práctica: Task Manager Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+## Contexto
+Crear un dashboard de gestión de tareas tipo Kanban con funcionalidad de drag & drop, utilizando las nuevas características de Angular 18.
 
-## Development server
+## Objetivos de Aprendizaje
+- Implementar Signals para manejo de estado reactivo
+- Utilizar RxJS para operaciones asíncronas y flujos de datos
+- Aplicar CDK Drag & Drop
+- Componentes standalone
+- Nueva sintaxis de control flow (@for, @if)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 📝 Requerimientos Funcionales
+
+### 1. Dashboard Principal (40 puntos)
+Crear un componente `DashboardComponent` que muestre:
+
+#### Panel de Estadísticas (15 puntos)
+- Total de tareas
+- Tareas en progreso
+- Tareas completadas
+- Tareas vencidas (overdue)
+- Las estadísticas deben actualizarse automáticamente usando `computed signals`
+
+#### Board Kanban (25 puntos)
+- 4 columnas: "To Do", "In Progress", "Review", "Done"
+- Cada columna muestra el contador de tareas
+- Implementar drag & drop entre columnas usando `@angular/cdk/drag-drop`
+
+---
+
+### 2. Servicio de Tareas (30 puntos)
+
+Crear `TaskService` que maneje:
+
+```typescript
+// Estructura de datos requerida
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  status: 'todo' | 'in-progress' | 'review' | 'done';
+  priority: 'low' | 'medium' | 'high';
+  dueDate: Date;
+  createdAt: Date;
+}
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+#### Implementación requerida:
+- ✅ Usar `signal<Task[]>` para almacenar las tareas
+- ✅ Crear `computed signals` para filtrar tareas por estado:
+  - `todoTasks()`
+  - `inProgressTasks()`
+  - `reviewTasks()`
+  - `doneTasks()`
+- ✅ Crear `computed signal` para estadísticas generales
+- ✅ Método para actualizar estado de tarea
+- ✅ Método para crear nueva tarea
+- 🎁 **Bonus:** Usar RxJS para simular API call con delay
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 3. Componente Task Card (20 puntos)
 
-```bash
-ng generate component component-name
-```
+Crear `TaskCardComponent` que:
+- Reciba la tarea como `@Input()`
+- Emita eventos con `@Output()` para:
+  - Click en la tarjeta
+  - Cambio de estado (toggle done)
+- Muestre prioridad con código de colores
+- Muestre fecha de vencimiento
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+### 4. Funcionalidad de Búsqueda - Bonus (10 puntos)
 
-## Building
+Implementar búsqueda de tareas usando:
+- `signal` para el término de búsqueda
+- `computed signal` o RxJS operator para filtrar tareas
+- Debounce de 300ms usando RxJS
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## ✨ Mejoras Adicionales (Opcional)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Si terminas antes del tiempo estimado, considera agregar:
 
-## Running unit tests
+- [ ] Persistencia en localStorage
+- [ ] Animaciones para drag & drop
+- [ ] Filtros por prioridad
+- [ ] Ordenamiento de tareas
+- [ ] Edición inline de tareas
+- [ ] Modo oscuro/claro
+- [ ] Tests unitarios con Jasmine/Jest
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**¡Buena suerte! 🚀**
