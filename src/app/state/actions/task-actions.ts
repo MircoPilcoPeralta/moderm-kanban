@@ -3,10 +3,7 @@ import { Task } from '../../domain';
 
 export const loadTasksRequest = createAction('[Task] Load Tasks Request');
 
-export const loadTasksSuccess = createAction(
-  '[Task] Load Tasks Success',
-  props<{ tasks: Task[] }>()
-);
+export const loadTasksSuccess = createAction('[Task] Load Tasks Success');
 
 export const loadTasksFailure = createAction(
   '[Task] Load Tasks Failure',
@@ -21,3 +18,5 @@ export const updateTask = createAction(
   '[Task] Update Task',
   props<{ taskId: string; task: Task }>()
 );
+
+export const addManyTasks = createAction('[Task] Add many', props<{ tasks: Task[] }>());
