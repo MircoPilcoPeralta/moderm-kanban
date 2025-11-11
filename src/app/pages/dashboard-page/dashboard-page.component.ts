@@ -14,10 +14,11 @@ import { KanbanColumn, MoveEvent, Status, Task, TaskStats } from '../../domain';
 import { TasksStatisticsFacade } from '../../services/facade/task-statistics-facade';
 import { TasksFacade } from '../../services/facade/tasks-facade';
 import { TaskDialogService } from '../../services/task-dialog.service';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-board-page',
-  imports: [CommonModule, KanbanColumnComponent, StatsPanel, TaskFormDialog],
+  imports: [CommonModule, KanbanColumnComponent, StatsPanel, TaskFormDialog, ToastComponent],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

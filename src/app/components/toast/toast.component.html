@@ -1,0 +1,10 @@
+@if (toastService.toast()) {
+<div class="toast-container">
+  <div class="toast" [class]="'toast-' + toastService.toast()!.type">
+    @if (toastService.toast()!.type === 'loading') {
+    <div class="spinner"></div>
+    }
+    <span class="toast-message">{{ toastService.toast()!.message }}</span>
+  </div>
+</div>
+}

@@ -63,7 +63,7 @@ interface Task {
   - `doneTasks()`
 - [x] Crear `computed signal` para estadísticas generales
 - [x] Método para actualizar estado de tarea
-- [ ] Método para crear nueva tarea
+- [x] Método para crear nueva tarea
 - [ ] 🎁 **Bonus:** Usar RxJS para simular API call con delay
 
 ---
