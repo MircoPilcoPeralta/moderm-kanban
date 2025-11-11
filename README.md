@@ -85,9 +85,9 @@ Crear `TaskCardComponent` que:
 
 Implementar búsqueda de tareas usando:
 
-- `signal` para el término de búsqueda
-- `computed signal` o RxJS operator para filtrar tareas
-- Debounce de 300ms usando RxJS
+-[x] `signal` para el término de búsqueda
+-[x] `computed signal` o RxJS operator para filtrar tareas
+-[x] Debounce de 300ms usando RxJS
 
 ---
 
