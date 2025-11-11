@@ -7,7 +7,7 @@ Crear un dashboard de gestión de tareas tipo Kanban con funcionalidad de drag &
 ## Objetivos de Aprendizaje
 
 - [x] Implementar Signals para manejo de estado reactivo
-- [ ] Utilizar RxJS para operaciones asíncronas y flujos de datos (Se emplearon signals para el flujo de datos)
+- [x] Utilizar RxJS para operaciones asíncronas y flujos de datos (Se emplearon signals para el flujo de datos)
 - [x] Aplicar CDK Drag & Drop
 - [x] Componentes standalone
 - [x] Nueva sintaxis de control flow (@for, @if)
@@ -62,7 +62,7 @@ interface Task {
   - `reviewTasks()`
   - `doneTasks()`
 - [x] Crear `computed signal` para estadísticas generales
-- [ ] Método para actualizar estado de tarea
+- [x] Método para actualizar estado de tarea
 - [ ] Método para crear nueva tarea
 - [ ] 🎁 **Bonus:** Usar RxJS para simular API call con delay
 

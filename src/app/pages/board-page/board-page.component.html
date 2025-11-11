@@ -1,7 +1,0 @@
-<app-stats-panel [stats]="taskStats()" />
-
-<div class="kanban-board">
-  @for(column of columns(); track column.status) {
-  <app-kanban-column [column]="column" (taskMoved)="onTaskMoved($event)" />
-  }
-</div>

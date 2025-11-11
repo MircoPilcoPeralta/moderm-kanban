@@ -9,20 +9,25 @@ import {
 } from '@angular/core';
 import { KanbanColumnComponent } from '../../components/kanban-column/kanban-column.component';
 import { StatsPanel } from '../../components/stats-panel/stats-panel';
+import { TaskFormDialog } from '../../components/task-form-dialog/task-form-dialog';
 import { KanbanColumn, MoveEvent, Status, Task, TaskStats } from '../../domain';
 import { TasksStatisticsFacade } from '../../services/facade/task-statistics-facade';
 import { TasksFacade } from '../../services/facade/tasks-facade';
+import { TaskDialogService } from '../../services/task-dialog.service';
 
 @Component({
   selector: 'app-board-page',
-  imports: [CommonModule, KanbanColumnComponent, StatsPanel],
-  templateUrl: './board-page.component.html',
-  styleUrl: './board-page.component.css',
+  imports: [CommonModule, KanbanColumnComponent, StatsPanel, TaskFormDialog],
+  templateUrl: './dashboard-page.component.html',
+  styleUrl: './dashboard-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardPageComponent implements OnInit {
+export class DashboardPageComponent implements OnInit {
   private _tasksFacade: TasksFacade = inject(TasksFacade);
+
   private _tasksStatisticsFacade: TasksStatisticsFacade = inject(TasksStatisticsFacade);
+
+  public readonly taskDialogService = inject(TaskDialogService);
 
   public readonly categorizedTasks = this._tasksFacade.categorizedTasks;
 

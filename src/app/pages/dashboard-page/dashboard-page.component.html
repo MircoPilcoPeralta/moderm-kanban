@@ -1,0 +1,24 @@
+<div class="page-header">
+  <div class="header-content">
+    <div class="header-info">
+      <h1 class="header-title">Dashboard</h1>
+      <p class="header-subtitle">Manage your tasks and projects efficiently</p>
+    </div>
+    <button class="btn-new-task" type="button" (click)="taskDialogService.openDialog()">
+      <img src="assets/icons/plus.svg" alt="Add task icon" width="20" height="20" />
+      <span>New Task</span>
+    </button>
+  </div>
+</div>
+
+<app-stats-panel [stats]="taskStats()" />
+
+<div class="kanban-board">
+  @for(column of columns(); track column.status) {
+  <app-kanban-column [column]="column" (taskMoved)="onTaskMoved($event)" />
+  }
+</div>
+
+@if (taskDialogService.isDialogOpen()) {
+<app-task-form-dialog (dialogClosed)="taskDialogService.closeDialog()" />
+}
