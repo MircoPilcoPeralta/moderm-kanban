@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import {
-  KanbanColumnComponent,
-  TaskMoveEvent,
-} from '../../components/kanban-column/kanban-column.component';
-import { KanbanColumn } from '../../domain';
-import { Status, Task } from '../../domain/task';
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  Signal,
+} from '@angular/core';
+import { KanbanColumnComponent } from '../../components/kanban-column/kanban-column.component';
+import { KanbanColumn, MoveEvent, Status, Task } from '../../domain';
 import { TasksFacade } from '../../services/facade/tasks-facade';
 
 @Component({
@@ -16,19 +19,51 @@ import { TasksFacade } from '../../services/facade/tasks-facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardPageComponent implements OnInit {
-  readonly columns: KanbanColumn[] = [
-    { status: 'todo', title: 'To Do' },
-    { status: 'in-progress', title: 'In Progress' },
-    { status: 'review', title: 'Review' },
-    { status: 'done', title: 'Done' },
-  ];
-
   private _tasksFacade: TasksFacade = inject(TasksFacade);
 
   public readonly categorizedTasks = this._tasksFacade.categorizedTasks;
 
+  public readonly allTasksStatuses = computed(() => Object.keys(this.categorizedTasks()));
+
+  public readonly columns: Signal<KanbanColumn[]> = computed(() => [
+    {
+      status: 'todo',
+      title: 'To Do',
+      tasks: this.categorizedTasks()['todo'],
+      count: this.categorizedTasks()['todo'].length,
+      connectedLists: this.getConnectedLists('todo'),
+    },
+    {
+      status: 'in-progress',
+      title: 'In Progress',
+      tasks: this.categorizedTasks()['in-progress'],
+      count: this.categorizedTasks()['in-progress'].length,
+      connectedLists: this.getConnectedLists('in-progress'),
+    },
+    {
+      status: 'review',
+      title: 'Review',
+      tasks: this.categorizedTasks()['review'],
+      count: this.categorizedTasks()['review'].length,
+      connectedLists: this.getConnectedLists('review'),
+    },
+    {
+      status: 'done',
+      title: 'Done',
+      tasks: this.categorizedTasks()['done'],
+      count: this.categorizedTasks()['done'].length,
+      connectedLists: this.getConnectedLists('done'),
+    },
+  ]);
+
   public ngOnInit(): void {
     this._tasksFacade.loadTasks();
+  }
+
+  onTaskMoved(event: MoveEvent): void {
+    if (event.previousStatus !== event.newStatus) {
+      this._tasksFacade.updateTaskStatus(event.taskId, event.newStatus);
+    }
   }
 
   public findTasksByStatus(status: Status): Task[] {
@@ -39,19 +74,9 @@ export class BoardPageComponent implements OnInit {
     return column.status;
   }
 
-  private readonly connectedListIds: string[] = this.columns.map(
-    (col) => `kanban-list-${col.status}`
-  );
-
-  // Get connected lists excluding the current one
-  getConnectedLists(currentStatus: Status): string[] {
-    return this.connectedListIds.filter((id) => id !== `kanban-list-${currentStatus}`);
-  }
-
-  // Handle task moved between columns
-  onTaskMoved(event: TaskMoveEvent): void {
-    if (event.previousStatus !== event.newStatus) {
-      this._tasksFacade.updateTaskStatus(event.taskId, event.newStatus);
-    }
+  getConnectedLists(requestStatus: Status): string[] {
+    return this.allTasksStatuses()
+      .filter((status) => status !== requestStatus)
+      .map((status) => `kanban-list-${status}`);
   }
 }

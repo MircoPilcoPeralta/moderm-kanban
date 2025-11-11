@@ -1,20 +1,22 @@
 <div class="kanban-column">
   <div class="kanban-column-header">
-    <h2 class="kanban-column-title">{{ title }}</h2>
-    <span class="kanban-column-count">{{ count }}</span>
+    <h2 class="kanban-column-title">{{ column().title }}</h2>
+    <span class="kanban-column-count">{{ column().count }}</span>
   </div>
 
   <div
     class="kanban-column-list"
     cdkDropList
-    [id]="listId"
-    [cdkDropListData]="tasks"
-    [cdkDropListConnectedTo]="connectedLists"
+    [id]="listId()"
+    [cdkDropListData]="column().tasks"
+    [cdkDropListConnectedTo]="column().connectedLists!"
     (cdkDropListDropped)="onDrop($event)"
   >
-    <div *ngFor="let task of tasks; trackBy: trackByTaskId" cdkDrag>
+    @for (task of column().tasks; track trackByTaskId($index, task)) {
+    <div cdkDrag [cdkDragData]="task">
       <app-kanban-task-card [task]="task" />
     </div>
+    }
   </div>
 
   <button class="kanban-column-add" type="button">

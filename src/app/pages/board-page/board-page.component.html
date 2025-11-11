@@ -1,12 +1,5 @@
 <div class="kanban-board">
-  @for(column of columns; track column.status) {
-  <app-kanban-column
-    [status]="column.status"
-    [title]="column.title"
-    [tasks]="findTasksByStatus(column.status)"
-    [count]="findTasksByStatus(column.status).length"
-    [connectedLists]="getConnectedLists(column.status)"
-    (taskMoved)="onTaskMoved($event)"
-  />
+  @for(column of columns(); track column.status) {
+  <app-kanban-column [column]="column" (taskMoved)="onTaskMoved($event)" />
   }
 </div>

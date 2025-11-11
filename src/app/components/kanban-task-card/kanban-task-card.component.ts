@@ -1,5 +1,5 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Task } from '../../domain/task';
 
 @Component({
@@ -11,5 +11,5 @@ import { Task } from '../../domain/task';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KanbanTaskCardComponent {
-  @Input({ required: true }) task!: Task;
+  public task = input.required<Task>();
 }

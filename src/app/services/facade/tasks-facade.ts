@@ -50,7 +50,6 @@ export class TasksFacade {
     const allTasks: Task[] = this.allTasksSignal();
 
     const task = allTasks.find((t) => t.id === taskId);
-    console.log('quieres mover la tarea ', task);
 
     if (task && task.status !== newStatus) {
       const updatedTask: Task = { ...task, status: newStatus };
