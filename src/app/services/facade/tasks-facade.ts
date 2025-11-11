@@ -30,10 +30,18 @@ export class TasksFacade {
     review: Task[];
     done: Task[];
   }> = computed(() => ({
-    todo: this.allTasksSignal().filter((t) => t.status === 'todo'),
-    'in-progress': this.allTasksSignal().filter((t) => t.status === 'in-progress'),
-    review: this.allTasksSignal().filter((t) => t.status === 'review'),
-    done: this.allTasksSignal().filter((t) => t.status === 'done'),
+    todo: this.allTasksSignal()
+      .filter((t) => t.status === 'todo')
+      .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()),
+    'in-progress': this.allTasksSignal()
+      .filter((t) => t.status === 'in-progress')
+      .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()),
+    review: this.allTasksSignal()
+      .filter((t) => t.status === 'review')
+      .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()),
+    done: this.allTasksSignal()
+      .filter((t) => t.status === 'done')
+      .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()),
   }));
 
   // todo para filtros crear un objeto de filtro y un computed signal
