@@ -64,7 +64,7 @@ interface Task {
 - [x] Crear `computed signal` para estadísticas generales
 - [x] Método para actualizar estado de tarea
 - [x] Método para crear nueva tarea
-- [ ] 🎁 **Bonus:** Usar RxJS para simular API call con delay
+- [x] 🎁 **Bonus:** Usar RxJS para simular API call con delay
 
 ---
 
