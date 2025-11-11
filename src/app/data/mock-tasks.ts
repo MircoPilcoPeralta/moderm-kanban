@@ -4,11 +4,12 @@ export const MOCK_TASKS: Task[] = [
   {
     id: '1',
     title: 'Design new landing page',
-    description: 'Create mockups and prototypes for the new landing page design with modern UI/UX principles',
+    description:
+      'Create mockups and prototypes for the new landing page design with modern UI/UX principles',
     status: 'todo',
     priority: 'high',
-    dueDate: new Date('2024-12-14'),
-    createdAt: new Date('2024-12-01'),
+    dueDate: new Date('2025-12-14'),
+    createdAt: new Date('2025-12-01'),
   },
   {
     id: '2',
@@ -16,8 +17,8 @@ export const MOCK_TASKS: Task[] = [
     description: 'Prepare slides and agenda for the weekly team sync meeting',
     status: 'todo',
     priority: 'medium',
-    dueDate: new Date('2024-12-19'),
-    createdAt: new Date('2024-12-02'),
+    dueDate: new Date('2025-12-19'),
+    createdAt: new Date('2025-12-02'),
   },
   {
     id: '3',
@@ -25,8 +26,8 @@ export const MOCK_TASKS: Task[] = [
     description: 'Optimize database queries and add proper indexing',
     status: 'in-progress',
     priority: 'high',
-    dueDate: new Date('2024-12-13'),
-    createdAt: new Date('2024-11-28'),
+    dueDate: new Date('2025-12-13'),
+    createdAt: new Date('2025-11-28'),
   },
   {
     id: '4',
@@ -34,8 +35,8 @@ export const MOCK_TASKS: Task[] = [
     description: 'Configure automated testing and deployment pipeline',
     status: 'in-progress',
     priority: 'medium',
-    dueDate: new Date('2024-12-04'),
-    createdAt: new Date('2024-11-25'),
+    dueDate: new Date('2025-12-04'),
+    createdAt: new Date('2025-11-25'),
   },
   {
     id: '5',
@@ -43,8 +44,8 @@ export const MOCK_TASKS: Task[] = [
     description: 'Review and update the API documentation with latest endpoints',
     status: 'review',
     priority: 'low',
-    dueDate: new Date('2024-12-17'),
-    createdAt: new Date('2024-12-05'),
+    dueDate: new Date('2025-12-17'),
+    createdAt: new Date('2025-12-05'),
   },
   {
     id: '6',
@@ -52,8 +53,8 @@ export const MOCK_TASKS: Task[] = [
     description: 'Set up JWT authentication and authorization for the API',
     status: 'review',
     priority: 'high',
-    dueDate: new Date('2024-12-11'),
-    createdAt: new Date('2024-11-20'),
+    dueDate: new Date('2025-12-11'),
+    createdAt: new Date('2025-11-20'),
   },
   {
     id: '7',
@@ -61,8 +62,8 @@ export const MOCK_TASKS: Task[] = [
     description: 'Review pull request for the new feature implementation',
     status: 'done',
     priority: 'medium',
-    dueDate: new Date('2024-12-09'),
-    createdAt: new Date('2024-11-15'),
+    dueDate: new Date('2025-12-09'),
+    createdAt: new Date('2025-11-15'),
   },
   {
     id: '8',
@@ -70,7 +71,7 @@ export const MOCK_TASKS: Task[] = [
     description: 'Conduct user testing and gather feedback',
     status: 'done',
     priority: 'low',
-    dueDate: new Date('2024-12-02'),
-    createdAt: new Date('2024-11-18'),
+    dueDate: new Date('2025-11-05'),
+    createdAt: new Date('2025-11-01'),
   },
 ];

@@ -1,0 +1,45 @@
+<div class="stats-panel">
+  <div class="stat-card stat-total">
+    <div class="stat-icon">
+      <img src="assets/icons/total-tasks.svg" alt="Total tasks icon" width="24" height="24" />
+    </div>
+    <div class="stat-content">
+      <div class="stat-label">Total Tasks</div>
+      <div class="stat-value">{{ stats().total }}</div>
+      <div class="stat-description">Active tasks</div>
+    </div>
+  </div>
+
+  <div class="stat-card stat-progress">
+    <div class="stat-icon">
+      <img src="assets/icons/in-progress.svg" alt="In progress icon" width="24" height="24" />
+    </div>
+    <div class="stat-content">
+      <div class="stat-label">In Progress</div>
+      <div class="stat-value">{{ stats().inProgress }}</div>
+      <div class="stat-description">Currently working</div>
+    </div>
+  </div>
+
+  <div class="stat-card stat-completed">
+    <div class="stat-icon">
+      <img src="assets/icons/completed.svg" alt="Completed icon" width="24" height="24" />
+    </div>
+    <div class="stat-content">
+      <div class="stat-label">Completed</div>
+      <div class="stat-value">{{ stats().completed }}</div>
+      <div class="stat-description">Well done!</div>
+    </div>
+  </div>
+
+  <div class="stat-card stat-overdue">
+    <div class="stat-icon">
+      <img src="assets/icons/overdue.svg" alt="Overdue icon" width="24" height="24" />
+    </div>
+    <div class="stat-content">
+      <div class="stat-label">Overdue</div>
+      <div class="stat-value">{{ stats().overdue }}</div>
+      <div class="stat-description">Need attention</div>
+    </div>
+  </div>
+</div>

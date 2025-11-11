@@ -8,22 +8,27 @@ import {
   Signal,
 } from '@angular/core';
 import { KanbanColumnComponent } from '../../components/kanban-column/kanban-column.component';
-import { KanbanColumn, MoveEvent, Status, Task } from '../../domain';
+import { StatsPanel } from '../../components/stats-panel/stats-panel';
+import { KanbanColumn, MoveEvent, Status, Task, TaskStats } from '../../domain';
+import { TasksStatisticsFacade } from '../../services/facade/task-statistics-facade';
 import { TasksFacade } from '../../services/facade/tasks-facade';
 
 @Component({
   selector: 'app-board-page',
-  imports: [CommonModule, KanbanColumnComponent],
+  imports: [CommonModule, KanbanColumnComponent, StatsPanel],
   templateUrl: './board-page.component.html',
   styleUrl: './board-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardPageComponent implements OnInit {
   private _tasksFacade: TasksFacade = inject(TasksFacade);
+  private _tasksStatisticsFacade: TasksStatisticsFacade = inject(TasksStatisticsFacade);
 
   public readonly categorizedTasks = this._tasksFacade.categorizedTasks;
 
   public readonly allTasksStatuses = computed(() => Object.keys(this.categorizedTasks()));
+
+  public readonly taskStats: Signal<TaskStats> = this._tasksStatisticsFacade.tasksStats;
 
   public readonly columns: Signal<KanbanColumn[]> = computed(() => [
     {
