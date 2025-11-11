@@ -27,7 +27,7 @@ export class LoadTasksEffect {
         this._toastService.showLoading('Loading tasks...');
       }),
       switchMap(() =>
-        this._taskHttpService.fetchTasksMock().pipe(
+        this._taskHttpService.fetchTasksFromLocalStorage().pipe(
           delay(2000),
           tap((tasks) => {
             console.log('Tasks loaded:', tasks);

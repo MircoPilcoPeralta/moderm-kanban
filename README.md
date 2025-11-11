@@ -98,7 +98,7 @@ Si terminas antes del tiempo estimado, considera agregar:
 - [ ] Persistencia en localStorage
 - [ ] Animaciones para drag & drop
 - [ ] Filtros por prioridad
-- [ ] Ordenamiento de tareas
+- [x] Ordenamiento de tareas(se implemento el ordenamiento por fecha de expiración de más proxima a más lejana)
 - [ ] Edición inline de tareas
 - [ ] Modo oscuro/claro
 - [ ] Tests unitarios con Jasmine/Jest
