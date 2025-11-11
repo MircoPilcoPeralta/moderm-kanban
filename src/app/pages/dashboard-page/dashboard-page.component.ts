@@ -8,17 +8,25 @@ import {
   Signal,
 } from '@angular/core';
 import { KanbanColumnComponent } from '../../components/kanban-column/kanban-column.component';
+import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { StatsPanel } from '../../components/stats-panel/stats-panel';
 import { TaskFormDialog } from '../../components/task-form-dialog/task-form-dialog';
+import { ToastComponent } from '../../components/toast/toast.component';
 import { KanbanColumn, MoveEvent, Status, Task, TaskStats } from '../../domain';
 import { TasksStatisticsFacade } from '../../services/facade/task-statistics-facade';
 import { TasksFacade } from '../../services/facade/tasks-facade';
 import { TaskDialogService } from '../../services/task-dialog.service';
-import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-board-page',
-  imports: [CommonModule, KanbanColumnComponent, StatsPanel, TaskFormDialog, ToastComponent],
+  imports: [
+    CommonModule,
+    KanbanColumnComponent,
+    StatsPanel,
+    TaskFormDialog,
+    ToastComponent,
+    SearchBarComponent,
+  ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

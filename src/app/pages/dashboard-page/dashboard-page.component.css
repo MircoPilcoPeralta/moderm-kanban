@@ -56,6 +56,12 @@
   transform: translateY(0);
 }
 
+.search-section {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 640px) {
   .header-content {
     flex-direction: column;

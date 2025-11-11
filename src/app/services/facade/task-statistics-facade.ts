@@ -10,14 +10,14 @@ export class TasksStatisticsFacade {
 
   public overdueTasks: Signal<number> = computed(() => {
     const today = new Date();
-    return this._tasksFacade.allTasksSignal().filter((task) => {
+    return this._tasksFacade.filteredTasks().filter((task) => {
       const dueDate = new Date(task.dueDate);
       return dueDate < today && task.status !== 'done';
     }).length;
   });
 
   public tasksStats: Signal<TaskStats> = computed(() => ({
-    total: this._tasksFacade.allTasksSignal().length,
+    total: this._tasksFacade.filteredTasks().length,
     inProgress: this._tasksFacade.categorizedTasks()['in-progress'].length,
     completed: this._tasksFacade.categorizedTasks()['done'].length,
     overdue: this.overdueTasks(),
