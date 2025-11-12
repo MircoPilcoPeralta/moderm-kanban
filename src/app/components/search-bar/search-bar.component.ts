@@ -9,7 +9,7 @@ import { TasksFacade } from '../../services/facade/tasks-facade';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.css'
+  styleUrl: './search-bar.component.css',
 })
 export class SearchBarComponent implements OnDestroy {
   private _tasksFacade = inject(TasksFacade);
@@ -19,26 +19,21 @@ export class SearchBarComponent implements OnDestroy {
   searchTerm = this._tasksFacade.searchTerm;
 
   constructor() {
-    this.searchSubject$
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe(term => {
-        this._tasksFacade.setSearchTerm(term);
-      });
+    this.searchSubject$.pipe(debounceTime(300), distinctUntilChanged()).subscribe((term) => {
+      this._tasksFacade.setSearchTerm(term);
+    });
   }
 
-  onSearchChange(value: string): void {
+  public onSearchChange(value: string): void {
     this.searchSubject$.next(value);
   }
 
-  clearSearch(): void {
+  public clearSearch(): void {
     this.searchSubject$.next('');
     this._tasksFacade.clearSearch();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.searchSubject$.complete();
   }
 }

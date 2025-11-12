@@ -12,7 +12,7 @@ import { selectAllTasks } from '../selectors/task-selector';
 export class SaveTasksEffect {
   private actions$ = inject(Actions);
 
-  private store = inject(Store);
+  private _store = inject(Store);
 
   private _localStorageTaskService = inject(LocalStorageTaskService);
 
@@ -20,7 +20,7 @@ export class SaveTasksEffect {
     () =>
       this.actions$.pipe(
         ofType(addTask, updateTask, removeTask, addManyTasks),
-        withLatestFrom(this.store.select(selectAllTasks)),
+        withLatestFrom(this._store.select(selectAllTasks)),
         tap(([action, tasks]) => {
           this._localStorageTaskService.saveTasks(tasks);
         })

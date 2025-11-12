@@ -13,7 +13,6 @@ export class TasksFacade {
 
   public searchTerm = signal<string>('');
 
-  // todo: llevar a método
   public allTasksSignal: Signal<Task[]> = toSignal(this._store.select(selectAllTasks), {
     initialValue: [],
   });

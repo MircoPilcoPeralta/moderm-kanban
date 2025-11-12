@@ -79,7 +79,7 @@ export class DashboardPageComponent implements OnInit {
     this._tasksFacade.loadTasks();
   }
 
-  onTaskMoved(event: MoveEvent): void {
+  public onTaskMoved(event: MoveEvent): void {
     if (event.previousStatus !== event.newStatus) {
       this._tasksFacade.updateTaskStatus(event.taskId, event.newStatus);
     }
@@ -89,11 +89,11 @@ export class DashboardPageComponent implements OnInit {
     return this.categorizedTasks()[status];
   }
 
-  trackByStatus(_index: number, column: KanbanColumn): Status {
+  public trackByStatus(_index: number, column: KanbanColumn): Status {
     return column.status;
   }
 
-  getConnectedLists(requestStatus: Status): string[] {
+  public getConnectedLists(requestStatus: Status): string[] {
     return this.allTasksStatuses()
       .filter((status) => status !== requestStatus)
       .map((status) => `kanban-list-${status}`);

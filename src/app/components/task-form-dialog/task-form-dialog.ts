@@ -12,24 +12,24 @@ import { TasksFacade } from '../../services/facade/tasks-facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormDialog {
-  private fb = inject(FormBuilder);
+  private _fb = inject(FormBuilder);
 
   private _tasksFacade = inject(TasksFacade);
 
-  taskCreated = output<Task>();
+  public taskCreated = output<Task>();
 
-  dialogClosed = output<void>();
+  public dialogClosed = output<void>();
 
-  priorities: Priority[] = ['low', 'medium', 'high'];
+  public priorities: Priority[] = ['low', 'medium', 'high'];
 
-  taskForm: FormGroup = this.fb.group({
+  taskForm: FormGroup = this._fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
     description: ['', [Validators.required]],
     priority: ['medium', [Validators.required]],
     dueDate: ['', [Validators.required]],
   });
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.taskForm.valid) {
       const formValue = this.taskForm.value;
 
@@ -49,7 +49,7 @@ export class TaskFormDialog {
     }
   }
 
-  closeDialog(): void {
+  public closeDialog(): void {
     this.dialogClosed.emit();
   }
 }
